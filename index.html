@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>거실 매트 계산기</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #f06, #4a90e2);
+            color: white;
+            text-align: center;
+            font-size: 2em;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 60px;
+            border-radius: 15px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            width: 90%;
+            max-width: 600px;
+        }
+        h2 {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        input {
+            width: 100%;
+            padding: 20px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 1em;
+        }
+        button {
+            background: #ffcc00;
+            color: black;
+            padding: 20px;
+            margin-top: 40px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1.2em;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        button:hover {
+            background: #ff9900;
+        }
+    </style>
+    <script>
+        function calculateMatsNeeded() {
+            let roomWidthM = parseFloat(document.getElementById("roomWidth").value);
+            let roomLengthM = parseFloat(document.getElementById("roomLength").value);
+            let matWidthCm = parseFloat(document.getElementById("matWidth").value);
+            let matLengthCm = parseFloat(document.getElementById("matLength").value);
+            
+            if (isNaN(roomWidthM) || isNaN(roomLengthM) || isNaN(matWidthCm) || isNaN(matLengthCm)) {
+                alert("올바른 숫자를 입력하세요.");
+                return;
+            }
+            
+            let roomWidthCm = roomWidthM * 100;
+            let roomLengthCm = roomLengthM * 100;
+            
+            let matsAcrossWidth = Math.ceil(roomWidthCm / matWidthCm);
+            let matsAcrossLength = Math.ceil(roomLengthCm / matLengthCm);
+            
+            let totalMats = matsAcrossWidth * matsAcrossLength;
+            
+            let resultPage = window.open("", "_blank");
+            resultPage.document.write("<html><head><title>결과</title>");
+            resultPage.document.write("<script>");
+            resultPage.document.write("setTimeout(function() { window.location.href = 'https://www.coupang.com/vp/products/8598064972?vendorItemId=91937311270'; }, 2000);");
+            resultPage.document.write("<\/script>");
+            resultPage.document.write("</head><body style='text-align:center; font-size:2em; background:#f4f4f4; color:#333; display:flex; justify-content:center; align-items:center; height:100vh;'><h1>필요한 매트 개수: " + totalMats + "개</h1></body></html>");
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h2>🏠 거실 매트 계산기 🏠</h2>
+        <label>거실 가로 (m):</label>
+        <input type="number" id="roomWidth" step="0.01" placeholder="예: 3.5"><br>
+        <label>거실 세로 (m):</label>
+        <input type="number" id="roomLength" step="0.01" placeholder="예: 4.2"><br>
+        <label>매트 가로 (cm):</label>
+        <input type="number" id="matWidth" step="0.01" placeholder="예: 50"><br>
+        <label>매트 세로 (cm):</label>
+        <input type="number" id="matLength" step="0.01" placeholder="예: 100"><br>
+        <button onclick="calculateMatsNeeded()">🧮 계산하기</button>
+    </div>
+</body>
+</html>
